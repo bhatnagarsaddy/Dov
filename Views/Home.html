@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title></title>
+    
+    <!-- Bootstrap, Date Time picker, Multi-select CSS -->
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Content/bootstrap-multiselect.min.css" rel="stylesheet" />
+    <link href="../Content/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../Content/OutlookAddin/site.min.css?v=1504f3ef6160">
+
+    <!--[if IE]>
+      <link rel="stylesheet" type="text/css" href="../Content/OutlookAddin/Site-IE.css" />
+    <![endif]-->
+
+    <!-- Office related Js files -->
+    <script src="../Scripts/jquery-1.9.1.min.js"></script>
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js" type="text/javascript"></script>    
+    <script src="../Scripts/App.js" type="text/javascript"></script>
+    
+    <!-- Proxima-Nova font Js files and script -->
+    <script src="https://use.typekit.net/pgd6axd.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        try{Typekit.load();}catch(e){}
+    </script>
+ </head>
+<body>
+    <div class="wrapper text-center">
+        <div class="fixed-width-container">
+            <!-- For top error -->
+            <div class="alert alert-danger fade in alert-dismissable error-div" id="errorContainer" style="display:none;">
+                <a href="#" class="close close-button" title="close" onclick="HideError(this)">×</a>
+                <div id="errorList">
+                </div>
+            </div>
+            <input type="hidden" value="" id="isCalenderEntry" data-date="" />
+            <div id="loadingImageHome" class="loading-div-home">
+                <img src="../Images/loading.gif" width="50" height="50" />
+            </div>
+        </div>
+        <!-- Main container for content -->
+        <div class="container main-container" id="homePageContainer">
+        </div>
+    </div>
+
+    <!-- Bootstrap and Underscore Js files -->
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts/bootstrap-multiselect.min.js"></script>
+    <script src="../Scripts/Underscore.js"></script>
+    
+    <!-- Date Time Picker js files -->
+    <script src="../Scripts/DateTimePicker/moment-with-locales.min.js"></script>
+    <script src="../Scripts/DateTimePicker/bootstrap-datetimepicker.min.js"></script>
+    
+    <!-- Custom Js files -->
+    <script src="../Scripts/OutlookAddin/siteHome.min.js?v=1504f3ef6160"></script>
+    <script src="../Scripts/OutlookAddin/siteConfig.min.js?v=1504f3ef6160"></script>
+</body>
+</html>

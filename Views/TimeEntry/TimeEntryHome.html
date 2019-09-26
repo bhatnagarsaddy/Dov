@@ -1,0 +1,110 @@
+<div id="timeEntryHome">
+    <!-- Container for top date slider -->
+    <div class="fixed-width-container">
+        <div class="btn-group calender-slider" role="group" aria-label="...">
+            <button type="button" onclick="SetPreviousWeek()" class="btn btn-default btn-sm calender-slider-button"><span class="glyphicon glyphicon-menu-left"></span></button>
+            <div class="top-Calender pull-left" type="button">
+                <span id="month"></span>
+                <span id="dates"></span>,
+                <span id="year"></span>
+
+                <input type="hidden" id="previousDate" value="" />
+                <input type="hidden" id="nextDate" value="" />
+
+                <input type="hidden" id="startDate" value="" />
+                <input type="hidden" id="endDate" value="" />
+            </div>
+            <button type="button" onclick="SetNextWeek()" class="btn btn-default btn-sm calender-slider-button"><span class="glyphicon glyphicon-menu-right"></span></button>
+        </div>
+    </div>
+
+    
+    <!-- For displaying week days and weekly time -->
+    <input type='text' id='weeklyDatePicker' class="top-Calender-input" placeholder="Select Week" style="display:none;" />    
+    <div class="background-blue">
+        <div class="week_bg fixed-width-container">
+            <div id="weekDayName" class="setCenter">
+                <div id="Sunday" class="day_weekly_block">
+                    <div>Sun</div>
+                </div>
+                <div id="Monday" class="day_weekly_block">
+                    <div>Mon</div>
+                </div>
+                <div id="Tuesday" class="day_weekly_block">
+                    <div>Tue</div>
+                </div>
+                <div id="Wednesday" class="day_weekly_block">
+                    <div>Wed</div>
+                </div>
+                <div id="Thursday" class="day_weekly_block">
+                    <div>Thu</div>
+                </div>
+                <div id="Friday" class="day_weekly_block">
+                    <div>Fri</div>
+                </div>
+                <div id="Saturday" class="day_weekly_block">
+                    <div>Sat</div>
+                </div>
+                <div id="weeklyHours">
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Container for tabs: Time Entry Details and Time Sheet -->
+        <div class="tab-bg fixed-width-container" id="tabs">
+            <ul class="nav nav-tabs setCenter" id="myTab">
+                <li class="active" id="tabTimeEntryDetails">
+                    <a data-target="#timeEntryDetailsContainer" data-toggle="tab">Enter Time</a>
+                </li>
+                <li id="tabTimeEntries">
+                    <a data-target="#timeEntriesContainer" onclick="LoadSingleDayEntry(true)" data-toggle="tab">Timesheet</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+        
+    <div id="loadingImage" class="loading-div">
+        <img src="../Images/loading.gif" class="theme-blue" width="50" height="50"/>
+        <br />
+        <p id="actionMessage" class="theme-blue"></p>
+    </div>
+
+    <!-- Time Entry Tabs -->
+    <div id="content">
+        <div class="tab-content fixed-width-container">
+            <!-- Eror div -->
+            <div class="alert alert-danger fade in alert-dismissable error-div" id="timeEntryDetailsErrorContainer" style="display:none;">
+                <a href="#" class="close close-button" title="close" onclick="HideError(this)">×</a>
+                <div id="errorList">
+                </div>
+            </div>
+            <!-- Time Entry Details Tab -->
+            <div class="tab-pane active" id="timeEntryDetailsContainer">
+            </div>
+
+            <!-- Time Entries Tab -->
+            <div class="tab-pane" id="timeEntriesContainer">
+            </div>
+        </div>
+    </div>
+        <div class="fineprint_logout">
+            © 2016 Dovico Software Inc. <a href="#" onclick="Logoff()" class="log_out_link">Log Out</a>
+            &nbsp;-&nbsp;
+            <a href="../Views/Help/Help.html" class="help_link_blue">Help</a>
+        </div>
+    </div>
+
+<!-------------------   Underscore Templates   ------------------->
+
+<!-- For Week hours scroller -->
+<script type="text/template" id="weeklyHoursTemplate">
+    <div class="weekly_day" onclick="SelectDate(this)" data-value="<%= Date %>">
+        <div>
+            <%= Hours > 0 ? Hours : '-' %>
+        </div>
+    </div>
+</script>
+
+<!-- Custom Js files for Time Entry Details and Time Sheet tabs -->
+<script src="../Scripts/OutlookAddin/TimeEntry/siteTimeEntryHome.min.js?v=1504f3ef74e8"></script>

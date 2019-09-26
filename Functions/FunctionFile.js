@@ -1,0 +1,2 @@
+﻿Office.initialize = function () {
+}

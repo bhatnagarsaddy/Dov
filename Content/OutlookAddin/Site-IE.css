@@ -1,0 +1,20 @@
+.textarea_error_floating_label {
+    position: absolute;
+    left: 0;
+    font-size: 11px;
+    color: red;
+    transition: all 0.1s linear;
+    opacity: 0;
+    margin-bottom: 0px !important;
+    width: 100%;
+    z-index: -1;
+}
+        .textarea_error_floating_label.show {
+            opacity: 1;
+            position: relative !important;
+            display: inline-flex !important;
+            text-align: left;
+            font-weight: normal !important;
+            padding: 5px 3px;
+            top: 0px !important;
+        }

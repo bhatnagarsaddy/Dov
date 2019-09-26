@@ -1,0 +1,143 @@
+<div class="form_box">
+    <!-- Assignment Details -->
+    <div id="assignmentDetails">
+        <div class="control-div">
+            <label class="label_floating_label show">Select Client</label>
+            <select id="ddlClient" class="stdDropdownList" onchange="LoadProjects('','',false)" placeholder="Select Client"> </select>
+            <span class="error_floating_label" id="errorClient">At least one client should be selected.</span>
+        </div>
+        <div class="control-div" id="projectDiv">
+            <label class="label_floating_label show">Select Project</label>
+            <select id="ddlProject" class="stdDropdownList" onchange="LoadTasks('',false)" placeholder="Select Project"> </select>
+            <span class="error_floating_label" id="errorProject">At least one project should be selected.</span>
+        </div>
+        <div class="control-div" id="taskDiv">
+            <label class="label_floating_label show">Select Task</label>
+            <select id="ddlTask" class="stdDropdownList"  onchange="CheckUncheckBillable(false)" placeholder="Select Task"> </select>
+            <span class="error_floating_label" id="errorTask">At least one task should be selected.</span>
+        </div>
+
+        <div id="dropdownloadingImage" class="dropdown-loading-div">
+            <img src="../Images/loading.gif" class="theme-blue" width="30" height="30" />
+            <br />
+            <p id="dropdownActionMessage" class="small theme-blue"></p>
+        </div>
+        <div class="control-div">
+            <label class="label_floating_label">Comment</label>
+            <textarea class="description-box" data-name="Comment" id="description" maxlength="5000" name="Comment" placeholder="Comment"></textarea>
+            <span class="textarea_error_floating_label" id="errorDescription">Description text must be less than 4000 characters.</span>
+        </div>
+
+        <!-- Meeting Specific Details -->
+        <div id="meetingTimeDetails">
+            <div class="control-div">
+                <label class="label_floating_label" id="floatingLabelMeeting">Meeting Details</label>
+                <div class="input-group" style="display:inline-block">
+                    <input class="form-control startEndTime-input" id="meetingStartTime" placeholder="Start"  onchange="GetMeetingTimeDuration()">
+                    <input class="form-control startEndTime-input" id="meetingEndTime" placeholder="End" onchange="GetMeetingTimeDuration()">
+                    <div class="input-group-addon hours-div" id="meetingTotalHours"></div>
+                </div>
+                <div style="clear:both;"></div>
+                <span class="billable input-group-addon">
+                    <input class="btn btn-default" type="checkbox" id="meetingChkBillable" />
+                    <span>Billable</span>
+                </span>
+                <span class="error_floating_label" id="errorMeetingDetails">Meeting Details are required/not in correct format.</span>
+            </div>
+        </div>
+
+        <!-- Non-meeting Details Div -->
+        <div id="nonMeetingTimeDetails">
+            <div class="control-div">
+                <label class="label_floating_label" id="floatingLabelHours">Hours</label>
+                <div class="billable-with-input">
+                    <input type="text" class="form-control" placeholder="Hours" id="txtBillable">
+                    <span class="input-group-addon">
+                        <input class="btn btn-default" type="checkbox" id="chkBillable" />
+                        <span>Billable</span>
+                    </span>
+                </div>
+                <span class="error_floating_label" id="errorHours">Hours are required/not in correct format.</span>
+            </div>
+        </div>
+    </div>
+
+    <!--    Custom Field    -->
+    <input type="hidden" id="timeEntryId" value="" />
+
+    <div id="customLoadingImage" class="loading-div" style="display:none">
+        <img src="../Images/loading.gif" class="theme-blue" width="50" height="50" />
+        <br />
+        <p id="customActionMessage" class="theme-blue">Loading Custom Templates</p>
+    </div>
+
+    <div id="customFields">
+
+    </div>
+
+    <input type="button" class="enter_time_button" id="btnSave" role="button" value="Enter Time" onclick="SaveTimeEntry()">
+    <img src="../Images/loading.gif" width="40" height="40" id="saveLoadingImage" style="display:none;"/>
+</div>
+
+<!-------------------   Underscore Templates   ------------------->
+
+<!-- For Assignment dropdowns -->
+<script type="text/template" id="listTemplate">
+    <option value='<%= ItemID %>' data-IsBillable='<%= TimeBillableByDefault %>' data-uri='<%= GetAssignmentsURI %>'><%= Name %></option>
+</script>
+
+<!-- For Numeric -->
+<script type="text/template" id="numericTemplate">
+    <div class="control-div">
+        <label class="label_floating_label"><%= Name %> <%= Required == 'T' ? '*' : '' %> </label>
+        <input id='<%= Id %>' type="text" class="form-control" data-required="<%= Required %>"  data-guid="" data-type="custom_numeric" placeholder="<%= Name %> <%= Required == 'T' ? '*' : '' %>" />
+        <span class="error_floating_label" id="<%= Id %>_errorCustomNumeric">Enter data in number format only.</span>
+    </div>
+</script>
+
+<!-- For Alphanumeric -->
+<script type="text/template" id="alphanumericTemplate">
+    <div class="control-div">
+        <label class="label_floating_label"><%= Name %> <%= Required == 'T' ? '*' : '' %></label>
+        <textarea class="description-box small" data-required="<%= Required %>" data-type="custom_alphanumeric" id='<%= Id %>' data-guid="" maxlength="5000" name="Description" placeholder="<%= Name %> <%= Required == 'T' ? '*' : '' %>"></textarea>
+        <span class="textarea_error_floating_label" id="<%= Id %>_errorCustomAlphaNumeric">Special characters are not allowed.</span>
+    </div>
+</script>
+
+<!-- For Datepicker -->
+<script type="text/template" id="datetimepickerTemplate">
+    <div class="control-div">
+        <label class="label_floating_label" id="<%= Id %>_label"><%= Name %> <%= Required == 'T' ? '*' : '' %></label>
+            <div class="input-group calender" data-required="<%= Required %>" id='<%= Id %>' data-type="custom_datePicker" data-guid="">
+                <input type="text" class="form-control" placeholder="<%= Name %> <%= Required == 'T' ? '*' : '' %>" readonly />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        <span class="error_floating_label" id="<%= Id %>_errorCustomdate">Date provided is in wrong format.</span>
+    </div>
+</script>
+
+<!--For MultiSelect Dropdown-->
+<script type="text/template" id="multiSelectTemplate">
+    <div class="control-div">
+        <label class="label_floating_label" id="<%= Id %>_label"><%= Name %> <%= Required == 'T' ? '*' : '' %></label>
+        <select id='<%= Id %>' multiple="multiple" data-required="<%= Required %>" data-type="custom_multipleselect" data-guid=""
+                placeholder="<%= Name %> <%= Required == 'T' ? '*' : '' %>"></select>
+        <span class="error_floating_label" id="<%= Id %>_errorMultiple">At least one selected value is required.</span>
+    </div>
+</script>
+
+<!--For Exclusive Select Dropdown-->
+<script type="text/template" id="exclusiveSelectTemplate">
+    <div class="control-div">
+        <label class="label_floating_label" id="<%= Id %>_label"><%= Name %> <%= Required == 'T' ? '*' : '' %></label>
+        <select id='<%= Id %>' data-type="custom_exclusiveSelect" data-required="<%= Required %>" placeholder="<%= Name %> <%= Required == 'T' ? '*' : '' %>" data-guid=""></select>
+        <span class="error_floating_label" id="<%= Id %>_errorExclusive">At least one valid selected value is required.</span>
+    </div>
+</script>
+
+<!--For option in multiselect-->
+<script type="text/template" id="selectOptionTemplate">
+    <option value='<%= Value  %>'><%= Value %></option>
+</script>

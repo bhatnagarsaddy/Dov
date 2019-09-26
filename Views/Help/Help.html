@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title></title>
+
+    <!-- Bootstrap CSS -->
+    <link href="../../Content/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../Content/OutlookAddin/site.min.css?v=1504f3ef7100">
+
+    <!-- Office related Js files -->
+    <script src="../../Scripts/jquery-1.9.1.min.js"></script>
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js" type="text/javascript"></script>
+    <script src="../../Scripts/App.js" type="text/javascript"></script>
+
+    <!-- Proxima-Nova font Js files and script -->
+    <script src="https://use.typekit.net/pgd6axd.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        try{Typekit.load();}catch(e){}
+    </script>
+</head>
+<body>
+    <div class="wrapper text-center">
+        <!-- Main container for content -->
+        <div class="container main-container">
+            <div class="fixed-width-container text-left">
+                
+                <div class="alert alert-danger fade in alert-dismissable error-div" id="helpErrorContainer" style="display:none;">
+                    <a href="#" class="close close-button" title="close" onclick="HideHelpError(this)">×</a>
+                    <div id="helpErrorList">
+                    </div>
+                </div>
+
+                <a class="btn btn-default btn-back" href="../Home.html"><span class="glyphicon glyphicon-home"></span>&nbsp; Back </a>
+                <div class="help-box">
+                    <div class="help-inner-block text-center" id="nameBox">
+                        <span id="userName"></span>
+                    </div>
+                    
+                    <div class="help-inner-block" >
+                       E-mail: <a href="mailto:support@dovico.com" target="_blank">support@dovico.com</a><br />
+                       Toll Free: 1-800-618-8463 <br />
+                       International: 00 800 4618 8463
+                    </div>
+                    
+                    <div class="help-inner-block" >
+                       Created for Dovico by Centric.<br />
+                       Copyright(C) 2016 Dovico Software Inc.
+                    </div>
+
+                    <div class="help-inner-block" >See more Apps at <br />
+                        <a target="_blank" href="http://www.dovico.com"> http://www.dovico.com </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Js file -->
+    <script src="../../Scripts/bootstrap.min.js"></script>
+
+    <!-- Custom Js files -->
+    <script src="../../Scripts/OutlookAddin/Help/siteHelp.min.js?v=1504f3ef7100"></script>
+    <script src="../../Scripts/OutlookAddin/siteConfig.min.js?v=1504f3ef7100"></script>
+    
+</body>
+</html>
